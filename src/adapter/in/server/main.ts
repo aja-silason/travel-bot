@@ -15,6 +15,7 @@ const data = {
     name: "Belmira da Silva",
     age: 19,
     address: "Bita Progresso",
+    hasBoyFriend: true
 }
 
 app.get(mainRoute.route, (req: Request, res: Response) => {
