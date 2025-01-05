@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
-import { STATUS_CODES } from "http";
 
 const app = express();
 const port = 3000;
