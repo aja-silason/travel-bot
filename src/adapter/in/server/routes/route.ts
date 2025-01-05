@@ -1,3 +1,3 @@
 export const mainRoute = {
-    route: "/api/v1/"
+    route: "/apibot/v1/"
 }
