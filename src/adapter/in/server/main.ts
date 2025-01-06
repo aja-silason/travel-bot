@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const data = {
-    name: "Belmira da Silva",
+    name: "New data info",
     age: 19,
     address: "Bita Progresso",
     hasBoyFriend: true
