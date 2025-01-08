@@ -1,0 +1,16 @@
+services:
+  travel-bot-db:
+    image: postgres:13
+    restart: always
+    container_name: travel-bot-db
+    environment:
+      POSTGRES_USER: travel
+      POSTGRES_PASSWORD: travel
+      POSTGRES_DB: travelbot
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      
+volumes:
+  postgres-data:
