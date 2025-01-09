@@ -3,7 +3,7 @@ import { ScheduleGateway } from "../../ports/in/schedule/schedule.gateway";
 import { Usecase } from "../use-case";
 
 export type ListScheduleBiIdInputDTO = {
-    id: string;
+    id: string
 };
 
 export type ListScheduleByIdOutputDTO ={
