@@ -24,15 +24,24 @@ export class CreateScheduleRoute implements IRoute {
 
             try {
                 
-                const input: CreateScheduleInputDTO = {
+                const payload: CreateScheduleInputDTO = {
                     name_passanger,
                     bi,
                     visa,
                     time_travel,
                     contact
                 }
+
+                const isValidate: Array<keyof CreateScheduleInputDTO> = ["name_passanger", "bi", "visa", "time_travel", "contact"];
+                for(const key of isValidate){
+                    if(payload[key] == "" || payload[key] == undefined || payload[key] == null){
+                        console.log(`${key} must be a fill`);
+                        res.status(422).json({message: `${key} must be a fill`}).send();
+                        return;
+                    }
+                }
     
-                const output: CreateScheduleResponseDTO = await this.createScheduleService.execute(input);
+                const output: CreateScheduleResponseDTO = await this.createScheduleService.execute(payload);
     
                 const responseBody = this.present(output);
     

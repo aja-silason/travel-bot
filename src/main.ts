@@ -7,8 +7,8 @@ import { CreateScheduleUsecase } from "./domain/use-case/schedule/create-schedul
 import dotenv from "dotenv";
 import { ListScheduleUseCase } from "./domain/use-case/schedule/list-schedule.usecase";
 import { ListScheduleRoute } from "./adapter/in/api/express/routes/scheduleController/list-schedule";
-import { ListScheduleByIDRoute } from "./adapter/in/api/express/routes/scheduleController/list-schedule-byIdentification";
 import { ListScheduleByIdUseCase } from "./domain/use-case/schedule/list-byId.usecase";
+import { ListScheduleByIdRoute } from "./adapter/in/api/express/routes/scheduleController/list-schedule-byIdentification";
 
 function main(){
 
@@ -22,7 +22,8 @@ function main(){
 
     const createScheduleRoute = CreateScheduleRoute.create(createSchedule);
     const listScheduleRoute = ListScheduleRoute.create(listSchedule);
-    const listScheduleByIdRoute = ListScheduleByIDRoute.create(listScheduleById)
+
+    const listScheduleByIdRoute = ListScheduleByIdRoute.create(listScheduleById)
 
     const port =  process.env.PORTDEV || 3003;
 

@@ -3,15 +3,15 @@ import { HttpMethod, IRoute } from "../Iroute"
 import { ListScheduleOutputDTO, ListScheduleUseCase } from "../../../../../../domain/use-case/schedule/list-schedule.usecase"
 
 export type ListScheduleResponseDTO = {
-    schedules: {
+    // schedules: {
         id: string,
         name_passanger: string,
         bi: string,
         visa: string,
         time_travel: string,
         contact: string
-    }[]
-}
+    // }[]
+}[]
 
 export class ListScheduleRoute implements IRoute{
 
@@ -51,16 +51,14 @@ export class ListScheduleRoute implements IRoute{
 
     private present(input: ListScheduleOutputDTO): ListScheduleResponseDTO{
         
-        const response: ListScheduleResponseDTO = {
-            schedules: input.schedule.map((schedule) => ({
-                id: schedule.id,
-                name_passanger: schedule.name_passanger,
-                bi: schedule.bi,
-                visa: schedule.visa,
-                time_travel: schedule.time_travel,
-                contact: schedule.contact
-            })),
-        };
+        const response = input.schedule.map((schedule) => ({
+            id: schedule.id,
+            name_passanger: schedule.name_passanger,
+            bi: schedule.bi,
+            visa: schedule.visa,
+            time_travel: schedule.time_travel,
+            contact: schedule.contact
+        }))
 
         return response;
     }

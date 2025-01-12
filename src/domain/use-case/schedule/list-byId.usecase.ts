@@ -7,18 +7,16 @@ export type ListScheduleBiIdInputDTO = {
 };
 
 export type ListScheduleByIdOutputDTO ={
-
-    data: {
+    
         id: string,
         name_passanger: string,
         bi: string,
         visa: string,
         time_travel: string,
         contact: string
-    }
 }
 
-export class ListScheduleByIdUseCase implements Usecase<ListScheduleBiIdInputDTO, ListScheduleByIdOutputDTO>{
+export class ListScheduleByIdUseCase implements Usecase<string, ListScheduleByIdOutputDTO>{
 
     private constructor(private readonly scheduleGateway: ScheduleGateway){}
 
@@ -26,27 +24,29 @@ export class ListScheduleByIdUseCase implements Usecase<ListScheduleBiIdInputDTO
         return new ListScheduleByIdUseCase(scheduleGateway);
     }
 
-    public async execute({id}: ListScheduleBiIdInputDTO): Promise<ListScheduleByIdOutputDTO> {
+    public async execute(id: string): Promise<ListScheduleByIdOutputDTO> {
         const schedule = await this.scheduleGateway.findById(id);
 
         if(!schedule){
-            throw new Error("Schedule not found");
+            console.log("Schedule not found");
         }
 
         return this.present(schedule);
     }
 
-    private present(schedules: Schedule): ListScheduleByIdOutputDTO {
-        return {
-            data: {
-                id: schedules.id,
-                name_passanger: schedules.name_passanger,
-                bi: schedules.bi,
-                visa: schedules.visa,
-                time_travel: schedules.time_travel,
-                contact: schedules.contact
-            }
+    private present(schedules: Schedule | any): ListScheduleByIdOutputDTO {
+       
+        const schedule =  {
+            id: schedules.id,
+            name_passanger: schedules.name_passanger,
+            bi: schedules.bi,
+            visa: schedules.visa,
+            time_travel: schedules.time_travel,
+            contact: schedules.contact
         }
+
+        return schedule;
+
     }
 
 }
