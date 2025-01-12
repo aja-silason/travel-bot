@@ -79,7 +79,7 @@ export class ScheduleRespositoryPrisma implements ScheduleGateway {
     }
 
     public async update(data: Schedule): Promise<void> {
-
+        
         const id = data.id;
 
        try {
@@ -102,13 +102,14 @@ export class ScheduleRespositoryPrisma implements ScheduleGateway {
             }
         }
         
-        const schedule = await this.prismaClient.schedule.update({
+        await this.prismaClient.schedule.update({
             where: {id},
             data: dataToUpdate
         });
 
+
        } catch (error) {
-        console.log("Something went wrong, we are fixing for you");
+        console.log(`${error} Something went wrong, we are fixing for you....`);
        }
         
     }

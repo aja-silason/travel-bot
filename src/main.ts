@@ -9,6 +9,8 @@ import { ListScheduleUseCase } from "./domain/use-case/schedule/list-schedule.us
 import { ListScheduleRoute } from "./adapter/in/api/express/routes/scheduleController/list-schedule";
 import { ListScheduleByIdUseCase } from "./domain/use-case/schedule/list-byId.usecase";
 import { ListScheduleByIdRoute } from "./adapter/in/api/express/routes/scheduleController/list-schedule-byIdentification";
+import { UpdateScheduleUsecase } from "./domain/use-case/schedule/update-schedule.usecase";
+import { UpdateScheduleRoute } from "./adapter/in/api/express/routes/scheduleController/update-schedule";
 
 function main(){
 
@@ -17,17 +19,20 @@ function main(){
     const aRepository = ScheduleRespositoryPrisma.create(prisma);
     const createSchedule = CreateScheduleUsecase.create(aRepository);
     const listSchedule = ListScheduleUseCase.create(aRepository);
-
     const listScheduleById = ListScheduleByIdUseCase.create(aRepository);
+    const updateSchedule = UpdateScheduleUsecase.create(aRepository);
+
 
     const createScheduleRoute = CreateScheduleRoute.create(createSchedule);
     const listScheduleRoute = ListScheduleRoute.create(listSchedule);
+    const listScheduleByIdRoute = ListScheduleByIdRoute.create(listScheduleById);
+    const updateScheduleRoute = UpdateScheduleRoute.create(updateSchedule);
 
-    const listScheduleByIdRoute = ListScheduleByIdRoute.create(listScheduleById)
 
     const port =  process.env.PORTDEV || 3003;
 
-    const api = ApiExpress.create([createScheduleRoute, listScheduleRoute, listScheduleByIdRoute]);
+    
+    const api = ApiExpress.create([createScheduleRoute, listScheduleRoute, listScheduleByIdRoute, updateScheduleRoute]);
     api.start(port);
 
 }

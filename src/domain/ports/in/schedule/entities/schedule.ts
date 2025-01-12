@@ -11,9 +11,9 @@ export class Schedule {
 
     private constructor(private props: ScheduleProps) { }
 
-    public static create(name_passanger: string, bi: string, visa: string,time_travel: string, contact: string) {
+    public static create(name_passanger: string, bi: string, visa: string,time_travel: string, contact: string, id?: string) {
         return new Schedule({
-            id: crypto.randomUUID().toString(),
+            id: id ?? crypto.randomUUID().toString(),
             name_passanger: name_passanger,
             bi: bi,
             visa: visa,

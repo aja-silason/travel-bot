@@ -3,6 +3,7 @@ import { ScheduleGateway } from "../../ports/in/schedule/schedule.gateway";
 import { Usecase } from "../use-case";
 
 export type UpdateScheduleUsecaseIputDTO = {
+    id: string,
     name_passanger: string,
     bi: string,
     visa: string,
@@ -21,8 +22,11 @@ export class UpdateScheduleUsecase implements Usecase<UpdateScheduleUsecaseIputD
     }
 
     public async execute(input: UpdateScheduleUsecaseIputDTO): Promise<void> {
-        const {name_passanger, bi, visa, time_travel, contact} = input;
-        const aSchedule = Schedule.create(name_passanger, bi, visa, time_travel, contact);
+        const {id, name_passanger, bi, visa, time_travel, contact} = input;
+
+        const aSchedule = Schedule.create(name_passanger, bi, visa, time_travel, contact, id);
+
+
 
         await this.scheduleGateway.update(aSchedule);
         
