@@ -37,7 +37,7 @@ export class DeleteScheduleRoute implements IRoute{
                     return;
                 }
 
-                res.status(205).send();
+                res.status(204).send();
 
             } catch (error) {
                 res.status(404).json({message: "Schedule not found"}).send();
