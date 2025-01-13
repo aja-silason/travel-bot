@@ -102,7 +102,7 @@ export class ScheduleRespositoryPrisma implements ScheduleGateway {
             }
         }
         
-        await this.prismaClient.schedule.update({
+        const schedule = await this.prismaClient.schedule.update({
             where: {id},
             data: dataToUpdate
         });
@@ -115,6 +115,16 @@ export class ScheduleRespositoryPrisma implements ScheduleGateway {
     }
     
     public async delete(id: string): Promise<void> {
+
+        try {
+            
+            await this.prismaClient.schedule.delete({
+                where: {id}
+            })
+
+        } catch (error) {
+            console.log(`Schedule not found`);
+        }
         
     }
 

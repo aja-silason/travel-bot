@@ -45,7 +45,7 @@ export class ListScheduleByIdRoute implements IRoute {
                 response.status(200).json(responseBody).send();
                 
             } catch (error) {
-                response.status(404).json({data: "Something went wrong, we are fixing for you"}).send();
+                response.status(404).json({data: "Schedule not found"}).send();
             }
         }
     }
