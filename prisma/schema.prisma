@@ -17,3 +17,10 @@ model Schedule {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
+
+model Visa {
+  id        String   @id @default(uuid())
+  visa      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
