@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Schedule {
+  id             String   @id @default(uuid())
+  name_passanger String
+  bi             String
+  visa           String
+  time_travel    String
+  contact        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Visa {
+  id        String   @id @default(uuid())
+  visa      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
